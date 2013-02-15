@@ -26,8 +26,9 @@ C         possible.
 
 C 3456789112345678921234567893123456789412345678951234567896123456
       PROGRAM QROOT
-      REAL a,b,c,root_a,root_b
+      REAL a,b,c,e,rroot_a,rroot_b,discr
       CHARACTER restart
+      COMPLEX croot_a,croot_b
 
       WRITE (*,*) 'This program calculates the real or complex'
       WRITE (*,*) '(imaginary) roots of a quadratic equation'
@@ -35,11 +36,29 @@ C 3456789112345678921234567893123456789412345678951234567896123456
 100   WRITE (*,*) 'Give me a, b, and c (spaces only, no comma):'
       READ (*,*) a,b,c
 
-      root_a = (-b+SQRT((b**2)-4*a*c))/(2*a)
-      root_b = (-b-SQRT((b**2)-4*a*c))/(2*a)
+      e = 1.0e-9
+      discr = b*b - 4.0*a*c
 
-      WRITE (*,*) 'Root 1 =', root_a
-      WRITE (*,*) 'Root 2 =', root_b
+      IF (ABS(discr) < e) THEN
+          rroot_a = -b / (2.0 * a)
+          WRITE (*,*) "Equation has one real root:"
+          WRITE (*,*) "Root = ", rroot_a
+
+      ELSE IF (discr > 0) THEN
+          rroot_a = -(b + SIGN(SQRT(discr), b)) / (2.0 * a)
+          rroot_b = c / (a * rroot_a)
+          WRITE (*,*) "Equation has two real roots:"
+          WRITE (*,*) "Root A = ", rroot_a
+          WRITE (*,*) "Root B = ", rroot_b
+
+      ELSE
+          croot_a = (-b + SQRT(CMPLX(discr))) / (2.0*a) 
+          croot_b = CONJG(croot_a)
+          WRITE (*,*) "Equation has two imaginary roots:" 
+          WRITE (*,*) "Root A = ", croot_a
+          WRITE (*,*) "Root B = ", croot_b
+
+      END IF
 
       WRITE (*,*) 'Calculate another? (y/n)'
       READ (*,*) restart
@@ -48,4 +67,3 @@ C         GOTOs are bad. Don't ever use them.
           GOTO 100
       END IF
       END
-

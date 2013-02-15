@@ -1,4 +1,4 @@
-C     Simple quadratic equation solver
+C     Simple quadratic root equation solver
 C	   by Anthony Giacalone
 C	  Written in Fortran, using the 77 standard, and compiled
 C	   using the f77 compiler frontend for GCC on Linux

@@ -33,13 +33,17 @@ C         conjugate of a complex number). Given the vast amount of
 C         built-in mathematical operations in Fortran, it appears
 C         to be written and intended for heavy math and 
 C         engineering use.
+C
+C         This program uses STRICT compliance with Fortran77 and
+C          has been tested to compile without any warnings with
+C          the program FTNCHEK.
 
 
 C 3456789112345678921234567893123456789412345678951234567896123456
       PROGRAM QROOT
-      CHARACTER restart
-      COMPLEX croot_a,croot_b
-      REAL a,b,c,e,rroot_a,rroot_b,discr
+      CHARACTER redo
+      COMPLEX croota,crootb
+      REAL a,b,c,e,rroota,rrootb,discr
 
       WRITE (*,*) 'This program calculates the real or complex'
       WRITE (*,*) '(imaginary) roots of a quadratic equation'
@@ -50,30 +54,30 @@ C 3456789112345678921234567893123456789412345678951234567896123456
       e = 1.0e-9
       discr = b * b - 4.0 * a * c
 
-      IF (ABS(discr) < e) THEN
-          rroot_a = -b / (2.0 * a)
-          WRITE (*,*) "Equation has one real root:"
-          WRITE (*,*) "Root = ", rroot_a
+      IF (ABS(discr) .LT. e) THEN
+          rroota = -b / (2.0 * a)
+          WRITE (*,*) 'Equation has one real root:'
+          WRITE (*,*) 'Root = ', rroota
 
-      ELSE IF (discr > 0) THEN
-          rroot_a = -(b + SIGN(SQRT(discr), b)) / (2.0 * a)
-          rroot_b = c / (a * rroot_a)
-          WRITE (*,*) "Equation has two real roots:"
-          WRITE (*,*) "Root A = ", rroot_a
-          WRITE (*,*) "Root B = ", rroot_b
+      ELSE IF (discr .GT. 0) THEN
+          rroota = -(b + SIGN(SQRT(discr), b)) / (2.0 * a)
+          rrootb = c / (a * rroota)
+          WRITE (*,*) 'Equation has two real roots:'
+          WRITE (*,*) 'Root A = ', rroota
+          WRITE (*,*) 'Root B = ', rrootb
 
       ELSE
-          croot_a = (-b + SQRT(CMPLX(discr))) / (2.0 * a) 
-          croot_b = CONJG(croot_a)
-          WRITE (*,*) "Equation has two imaginary roots:" 
-          WRITE (*,*) "Root A = ", croot_a
-          WRITE (*,*) "Root B = ", croot_b
+          croota = (-b + SQRT(CMPLX(discr))) / (2.0 * a) 
+          crootb = CONJG(croota)
+          WRITE (*,*) 'Equation has two imaginary roots:' 
+          WRITE (*,*) 'Root A = ', croota
+          WRITE (*,*) 'Root B = ', crootb
 
       END IF
 
       WRITE (*,*) 'Calculate another? (y/n)'
-      READ (*,*) restart
-      IF (restart == 'y') THEN
+      READ (*,*) redo
+      IF (redo .EQ. 'y') THEN
 C         GOTOs are bad. Don't ever use them.
           GOTO 100
       END IF

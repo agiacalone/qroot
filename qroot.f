@@ -1,7 +1,7 @@
 C     Simple quadratic root equation solver
-C	   by Anthony Giacalone
-C	  Written in Fortran, using the 77 standard, and compiled
-C	   using the f77 compiler frontend for GCC on Linux
+C      by Anthony Giacalone
+C     Written in Fortran, using the 77 standard, and compiled
+C      using the f77 compiler frontend for GCC on Linux
 C
 C     Some interesting observations made while coding this
 C      project in Fortran:
@@ -39,7 +39,7 @@ C          has been tested to compile without any warnings with
 C          the program FTNCHEK.
 
 
-C 3456789112345678921234567893123456789412345678951234567896123456
+C 3456789112345678921234567893123456789412345678951234567896123456789712
       PROGRAM QROOT
       CHARACTER redo
       COMPLEX croota,crootb

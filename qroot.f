@@ -10,7 +10,7 @@ C
 C      1. Modern programmer's editors (Sublime Text and Gedit)
 C         do not handle some of Fortran's idiosyncracies well.
 C         Mainly, column formatting, syntax highlighting, and the
-C         hard 80-column limit were either not implemented or
+C         hard 72-column limit were either not implemented or
 C         poorly working. VI, on the other hand, had all of these
 C         nice features working flawlessly and without any
 C         additional setup.

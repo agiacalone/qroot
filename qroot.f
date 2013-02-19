@@ -35,9 +35,17 @@ C         built-in mathematical operations in Fortran, it appears
 C         to be written and intended for heavy math and 
 C         engineering use.
 C
-C         This program uses STRICT compliance with Fortran77 and
-C          has been tested to compile without any warnings with
-C          the program FTNCHEK.
+C      4. Stripping out the imaginary part of the complex number
+C         is not as straight-forward as it seems. The function
+C         AIMAG() was not documented in any legacy manuals and I was
+C         only able to find it by reading the GNU Fortran compliler
+C         specifications and documentation (apparently it replaces an 
+C         older legacy function named IMAGPART(), which has been
+C         depreciated in the modern version of GCC).
+C
+C         This program uses (mostly) STRICT compliance with Fortran77
+C         and has been tested to compile without any warnings with the
+C         program FTNCHEK.
 
 
 C 3456789112345678921234567893123456789412345678951234567896123456789712
@@ -49,14 +57,15 @@ C 3456789112345678921234567893123456789412345678951234567896123456789712
       WRITE (*,*) 'This program calculates the real or complex'
       WRITE (*,*) '(imaginary) roots of a quadratic equation'
 
- 100  WRITE (*,*) 'Give me a, b, and c (spaces only, no comma):'
+ 50   WRITE (*,*) 'Give me a, b, and c (spaces only, no comma):'
       READ (*,*) a,b,c
 
       e = 1.0e-9
       discr = b * b - 4.0 * a * c
       
       IF (a .EQ. 0) THEN
-          WRITE (*,*) 'You cannot divide by zero!'
+          WRITE (*,100) 'You cannot divide by zero!'
+ 100      FORMAT (A,/)
 C         GOTOs are bad. Don't ever use them.
           GOTO 500
       END IF
@@ -88,7 +97,7 @@ C         GOTOs are bad. Don't ever use them.
       READ (*,*) redo
       IF (redo .EQ. 'y') THEN
 C         Do as I say...not as I do!
-          GOTO 100
+          GOTO 50
       END IF
       END
 

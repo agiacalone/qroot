@@ -77,9 +77,9 @@ C         GOTOs are bad. Don't ever use them.
       ELSE
           croota = (-b + SQRT(CMPLX(discr))) / (2.0 * a) 
           crootb = CONJG(croota)
-          WRITE (*,*) 'Equation has two imaginary roots:'
           imgpta = AIMAG(croota)
           imgptb = AIMAG(crootb)
+          WRITE (*,*) 'Equation has two imaginary roots:'
           WRITE (*,400) 'A', imgpta, 'B', imgptb
  400      FORMAT (2('Root ',A1,' = ',F10.4,'*i',/))
       END IF

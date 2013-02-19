@@ -64,22 +64,22 @@ C         GOTOs are bad. Don't ever use them.
       IF (ABS(discr) .LT. e) THEN
           rroota = -b / (2.0 * a)
           WRITE (*,*) 'Equation has one real root:'
-          WRITE (*,*) 'Root = ', rroota
+          WRITE (*,200) rroota
+ 200      FORMAT ('Root = ',F10.4,/)
 
       ELSE IF (discr .GT. 0) THEN
           rroota = -(b + SIGN(SQRT(discr), b)) / (2.0 * a)
           rrootb = c / (a * rroota)
           WRITE (*,*) 'Equation has two real roots:'
-          WRITE (*,*) 'Root A = ', rroota
-          WRITE (*,*) 'Root B = ', rrootb
+          WRITE (*,300) 'A', rroota, 'B', rrootb
+ 300      FORMAT (2('Root ',A1,' = ',F10.4,/))
 
       ELSE
           croota = (-b + SQRT(CMPLX(discr))) / (2.0 * a) 
           crootb = CONJG(croota)
           WRITE (*,*) 'Equation has two imaginary roots:'
-          WRITE (*,200) 'Root A = ', croota
-          WRITE (*,200) 'Root B = ', crootb
- 200      FORMAT (A,F1.0,F10.4,'*i')
+          WRITE (*,400) 'A', croota, 'B', crootb
+ 400      FORMAT (2('Root ',A1,' = ',F1.0,F10.4,'*i',/))
       END IF
 
  500  WRITE (*,*) 'Calculate another? (y/n)'

@@ -1,5 +1,6 @@
 C     Simple quadratic root equation solver
 C      by Anthony Giacalone
+C
 C     Written in Fortran, using the 77 standard, and compiled
 C      using the f77 compiler frontend for GCC on Linux
 C
@@ -48,12 +49,18 @@ C 3456789112345678921234567893123456789412345678951234567896123456789712
       WRITE (*,*) 'This program calculates the real or complex'
       WRITE (*,*) '(imaginary) roots of a quadratic equation'
 
-100   WRITE (*,*) 'Give me a, b, and c (spaces only, no comma):'
+ 100  WRITE (*,*) 'Give me a, b, and c (spaces only, no comma):'
       READ (*,*) a,b,c
 
       e = 1.0e-9
       discr = b * b - 4.0 * a * c
-
+      
+      IF (a .EQ. 0) THEN
+          WRITE (*,*) 'You cannot divide by zero!'
+C         GOTOs are bad. Don't ever use them.
+          GOTO 500
+      END IF
+      
       IF (ABS(discr) .LT. e) THEN
           rroota = -b / (2.0 * a)
           WRITE (*,*) 'Equation has one real root:'
@@ -69,16 +76,16 @@ C 3456789112345678921234567893123456789412345678951234567896123456789712
       ELSE
           croota = (-b + SQRT(CMPLX(discr))) / (2.0 * a) 
           crootb = CONJG(croota)
-          WRITE (*,*) 'Equation has two imaginary roots:' 
-          WRITE (*,*) 'Root A = ', croota
-          WRITE (*,*) 'Root B = ', crootb
-
+          WRITE (*,*) 'Equation has two imaginary roots:'
+          WRITE (*,200) 'Root A = ', croota
+          WRITE (*,200) 'Root B = ', crootb
+ 200      FORMAT (A,F1.0,F10.4,'*i')
       END IF
 
-      WRITE (*,*) 'Calculate another? (y/n)'
+ 500  WRITE (*,*) 'Calculate another? (y/n)'
       READ (*,*) redo
       IF (redo .EQ. 'y') THEN
-C         GOTOs are bad. Don't ever use them.
+C         Do as I say...not as I do!
           GOTO 100
       END IF
       END

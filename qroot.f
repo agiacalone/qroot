@@ -10,7 +10,7 @@ C
 C      1. Modern programmer's editors (Sublime Text and Gedit)
 C         do not handle some of Fortran's idiosyncracies well.
 C         Mainly, column formatting, syntax highlighting, and the
-C         hard 66-column limit were either not implemented or
+C         hard 72-column limit were either not implemented or
 C         poorly working. VI, on the other hand, had all of these
 C         nice features working flawlessly and without any
 C         additional setup.
@@ -24,9 +24,9 @@ C         historically accurate as possible) I've chosen to keep
 C         with tradition and use the WRITE (*,*) whenever
 C         possible.
 C
-C      3. There are (at least) two different ways to do power
-C         arithmetic: 2**2 and SQRT(2). Both are built-in
-C         functions, unlike with most modern languages. Also,
+C      3. There are quite a few mathematical built-in functions
+C         in Fortran, unlike most modern languages where math
+C         libraries must be imported to allow faster execution. Also,
 C         there are functions to perform arithmetic on imaginary
 C         numbers (also built-in), some of which were put into use
 C         in this program like CONJ (CONJ calculates the complex

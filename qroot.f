@@ -35,16 +35,8 @@ C         built-in mathematical operations in Fortran, it appears
 C         to be written and intended for heavy math and 
 C         engineering use.
 C
-C      4. Stripping out the imaginary part of the complex number
-C         is not as straight-forward as it seems. The function
-C         AIMAG() was not documented in any legacy manuals and I was
-C         only able to find it by reading the GNU Fortran compliler
-C         specifications and documentation (apparently it replaces an 
-C         older legacy function named IMAGPART(), which has been
-C         depreciated in the modern version of GCC).
-C
-C         This program uses (mostly) STRICT compliance with Fortran77
-C         and has been tested to compile without any warnings with the
+C         This program uses STRICT compliance with Fortran77 and
+C         has been tested to compile without any warnings with the
 C         program FTNCHEK.
 
 

@@ -44,7 +44,7 @@ C 3456789112345678921234567893123456789412345678951234567896123456789712
       PROGRAM QROOT
       CHARACTER redo
       COMPLEX croota,crootb
-      REAL a,b,c,e,rroota,rrootb,discr
+      REAL a,b,c,e,rroota,rrootb,discr,imgpta,imgptb
 
       WRITE (*,*) 'This program calculates the real or complex'
       WRITE (*,*) '(imaginary) roots of a quadratic equation'
@@ -78,8 +78,10 @@ C         GOTOs are bad. Don't ever use them.
           croota = (-b + SQRT(CMPLX(discr))) / (2.0 * a) 
           crootb = CONJG(croota)
           WRITE (*,*) 'Equation has two imaginary roots:'
-          WRITE (*,400) 'A', croota, 'B', crootb
- 400      FORMAT (2('Root ',A1,' = ',F1.0,F10.4,'*i',/))
+          imgpta = AIMAG(croota)
+          imgptb = AIMAG(crootb)
+          WRITE (*,400) 'A', imgpta, 'B', imgptb
+ 400      FORMAT (2('Root ',A1,' = ',F10.4,'*i',/))
       END IF
 
  500  WRITE (*,*) 'Calculate another? (y/n)'
